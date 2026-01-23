@@ -1,4 +1,5 @@
 import { Satellite, Wifi, Globe, Radio, Ship, Settings, ArrowRight } from "lucide-react";
+import { Link } from "react-router-dom";
 import { Button } from "./ui/button";
 import navigationImage from "@/assets/navigation-bridge.jpg";
 
@@ -6,6 +7,7 @@ const services = [
   {
     icon: Globe,
     title: "OneWeb",
+    href: "/services/oneweb",
     description:
       "With OneWeb we bring fibre-like speeds to maritime connectivity. Low latency connection enabling real-time applications and seamless communication at sea.",
     features: ["Low Latency", "Global Coverage", "High-Speed"],
@@ -13,6 +15,7 @@ const services = [
   {
     icon: Satellite,
     title: "Starlink Maritime",
+    href: "/services/starlink",
     description:
       "Starlink Maritime is a satellite communication service specifically designed for maritime applications offering high-speed, low-latency internet.",
     features: ["High-Speed Internet", "Easy Setup", "Reliable"],
@@ -20,6 +23,7 @@ const services = [
   {
     icon: Wifi,
     title: "Maritime VSAT",
+    href: "/services/vsat",
     description:
       "Experience unlimited usage and reliable Maritime VSAT internet with Greig Technologies. Our High Speed VSAT ensures seamless connectivity for your fleet.",
     features: ["Unlimited Usage", "Enterprise SLA", "24/7 Support"],
@@ -27,6 +31,7 @@ const services = [
   {
     icon: Radio,
     title: "Iridium Certus",
+    href: "/services/iridium-certus",
     description:
       "With Iridium Certus onboard, your vessels benefit from oceanwide L-band connectivity designed for maritime operations worldwide.",
     features: ["L-Band", "Global Reach", "Reliable Backup"],
@@ -34,6 +39,7 @@ const services = [
   {
     icon: Ship,
     title: "Fleet Broadband",
+    href: "/services/fleet-broadband",
     description:
       "Seamless and flawless connectivity. Inmarsat Fleet Broadband provides backup service for maritime VSAT, ensuring you stay connected.",
     features: ["Backup Service", "Inmarsat Network", "Reliable"],
@@ -41,6 +47,7 @@ const services = [
   {
     icon: Settings,
     title: "Value Added Services",
+    href: "/services/value-added-services",
     description:
       "Managing your hybrid networks and delivering your fleet's onboard IT infrastructure. Complete IT solutions for maritime operations.",
     features: ["IT Management", "Hybrid Networks", "Full Support"],
@@ -99,13 +106,13 @@ const Services = () => {
               </div>
 
               {/* Link */}
-              <a
-                href="#contact"
+              <Link
+                to={service.href}
                 className="inline-flex items-center gap-2 text-sm font-semibold text-accent hover:gap-3 transition-all"
               >
                 Learn More
                 <ArrowRight className="w-4 h-4" />
-              </a>
+              </Link>
             </div>
           ))}
         </div>
