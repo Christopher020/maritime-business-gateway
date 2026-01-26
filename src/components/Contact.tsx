@@ -1,8 +1,10 @@
 import { useState } from "react";
 import { Phone, Mail, MapPin, Send, Clock } from "lucide-react";
+import { motion } from "framer-motion";
 import { Button } from "./ui/button";
 import { Input } from "./ui/input";
 import { Textarea } from "./ui/textarea";
+import ScrollReveal from "./ScrollReveal";
 
 const Contact = () => {
   const [formData, setFormData] = useState({
@@ -45,7 +47,7 @@ const Contact = () => {
     <section id="contact" className="py-24 bg-muted/50">
       <div className="container mx-auto px-4">
         {/* Section Header */}
-        <div className="text-center max-w-3xl mx-auto mb-16">
+        <ScrollReveal className="text-center max-w-3xl mx-auto mb-16">
           <span className="inline-block font-heading font-semibold text-accent text-sm tracking-widest uppercase mb-4">
             Get In Touch
           </span>
@@ -57,11 +59,11 @@ const Contact = () => {
             Ready to enhance your maritime connectivity? Get in touch with our team
             for a customized solution tailored to your needs.
           </p>
-        </div>
+        </ScrollReveal>
 
         <div className="grid lg:grid-cols-5 gap-12">
           {/* Contact Info */}
-          <div className="lg:col-span-2 space-y-6">
+          <ScrollReveal direction="left" className="lg:col-span-2 space-y-6">
             <div className="bg-ocean-gradient rounded-2xl p-8 text-primary-foreground">
               <h3 className="font-heading text-2xl font-bold mb-8">
                 Let's discuss your project
@@ -69,7 +71,14 @@ const Contact = () => {
               
               <div className="space-y-6">
                 {contactInfo.map((item, index) => (
-                  <div key={index} className="flex gap-4">
+                  <motion.div 
+                    key={index} 
+                    initial={{ opacity: 0, x: -20 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ delay: index * 0.1, duration: 0.4 }}
+                    className="flex gap-4"
+                  >
                     <div className="w-12 h-12 rounded-xl bg-primary-foreground/10 flex items-center justify-center flex-shrink-0">
                       <item.icon className="w-5 h-5 text-accent" />
                     </div>
@@ -83,14 +92,14 @@ const Contact = () => {
                         </p>
                       ))}
                     </div>
-                  </div>
+                  </motion.div>
                 ))}
               </div>
             </div>
-          </div>
+          </ScrollReveal>
 
           {/* Contact Form */}
-          <div className="lg:col-span-3">
+          <ScrollReveal direction="right" className="lg:col-span-3">
             <form onSubmit={handleSubmit} className="bg-card rounded-2xl p-8 shadow-medium">
               <div className="grid md:grid-cols-2 gap-6 mb-6">
                 <div>
@@ -149,7 +158,7 @@ const Contact = () => {
                 <Send className="w-5 h-5" />
               </Button>
             </form>
-          </div>
+          </ScrollReveal>
         </div>
       </div>
     </section>

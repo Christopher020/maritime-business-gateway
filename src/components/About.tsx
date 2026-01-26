@@ -1,5 +1,7 @@
 import { Target, Eye, Compass, CheckCircle2 } from "lucide-react";
+import { motion } from "framer-motion";
 import satelliteImage from "@/assets/satellite-equipment.jpg";
+import ScrollReveal from "./ScrollReveal";
 
 const About = () => {
   const values = [
@@ -34,7 +36,7 @@ const About = () => {
     <section id="about" className="py-24 bg-background">
       <div className="container mx-auto px-4">
         {/* Section Header */}
-        <div className="text-center max-w-3xl mx-auto mb-16">
+        <ScrollReveal className="text-center max-w-3xl mx-auto mb-16">
           <span className="inline-block font-heading font-semibold text-accent text-sm tracking-widest uppercase mb-4">
             About Us
           </span>
@@ -46,12 +48,12 @@ const About = () => {
             Greig Technologies Limited delivers a complete range of satellite communications 
             solutions for the oil and gas industry – for exploration and production sites.
           </p>
-        </div>
+        </ScrollReveal>
 
         {/* Main Content Grid */}
         <div className="grid lg:grid-cols-2 gap-16 items-center mb-20">
           {/* Image */}
-          <div className="relative animate-fade-in-left">
+          <ScrollReveal direction="left">
             <div className="relative rounded-2xl overflow-hidden shadow-strong">
               <img
                 src={satelliteImage}
@@ -61,7 +63,13 @@ const About = () => {
               <div className="absolute inset-0 bg-gradient-to-t from-primary/40 to-transparent" />
             </div>
             {/* Floating Card */}
-            <div className="absolute -bottom-8 -right-8 bg-card rounded-xl p-6 shadow-strong max-w-xs hidden md:block">
+            <motion.div 
+              initial={{ opacity: 0, scale: 0.9 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.3, duration: 0.5 }}
+              className="absolute -bottom-8 -right-8 bg-card rounded-xl p-6 shadow-strong max-w-xs hidden md:block"
+            >
               <div className="flex items-center gap-4 mb-3">
                 <div className="w-12 h-12 rounded-full bg-accent/10 flex items-center justify-center">
                   <Target className="w-6 h-6 text-accent" />
@@ -71,11 +79,11 @@ const About = () => {
                   <p className="text-sm text-muted-foreground">Industry Experience</p>
                 </div>
               </div>
-            </div>
-          </div>
+            </motion.div>
+          </ScrollReveal>
 
           {/* Content */}
-          <div className="animate-fade-in-right">
+          <ScrollReveal direction="right">
             <h3 className="font-heading text-2xl md:text-3xl font-bold text-foreground mb-6">
               Enterprise-Grade Satellite Solutions for Maritime Operations
             </h3>
@@ -88,32 +96,38 @@ const About = () => {
             {/* Highlights */}
             <ul className="space-y-4 mb-8">
               {highlights.map((item, index) => (
-                <li key={index} className="flex items-start gap-3">
+                <motion.li 
+                  key={index} 
+                  initial={{ opacity: 0, x: 20 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: index * 0.1, duration: 0.4 }}
+                  className="flex items-start gap-3"
+                >
                   <CheckCircle2 className="w-5 h-5 text-accent mt-0.5 flex-shrink-0" />
                   <span className="text-foreground">{item}</span>
-                </li>
+                </motion.li>
               ))}
             </ul>
-          </div>
+          </ScrollReveal>
         </div>
 
         {/* Values Cards */}
         <div className="grid md:grid-cols-3 gap-8">
           {values.map((value, index) => (
-            <div
-              key={index}
-              className="group bg-card rounded-2xl p-8 shadow-soft hover:shadow-strong transition-all duration-500 hover:-translate-y-2"
-            >
-              <div className="w-14 h-14 rounded-xl bg-accent/10 flex items-center justify-center mb-6 group-hover:bg-accent/20 transition-colors">
-                <value.icon className="w-7 h-7 text-accent" />
+            <ScrollReveal key={index} delay={index * 0.15}>
+              <div className="group bg-card rounded-2xl p-8 shadow-soft hover:shadow-strong transition-all duration-500 hover:-translate-y-2 h-full">
+                <div className="w-14 h-14 rounded-xl bg-accent/10 flex items-center justify-center mb-6 group-hover:bg-accent/20 transition-colors">
+                  <value.icon className="w-7 h-7 text-accent" />
+                </div>
+                <h4 className="font-heading text-xl font-bold text-foreground mb-4">
+                  {value.title}
+                </h4>
+                <p className="text-muted-foreground leading-relaxed">
+                  {value.description}
+                </p>
               </div>
-              <h4 className="font-heading text-xl font-bold text-foreground mb-4">
-                {value.title}
-              </h4>
-              <p className="text-muted-foreground leading-relaxed">
-                {value.description}
-              </p>
-            </div>
+            </ScrollReveal>
           ))}
         </div>
       </div>

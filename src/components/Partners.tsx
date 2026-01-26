@@ -1,3 +1,6 @@
+import { motion } from "framer-motion";
+import ScrollReveal from "./ScrollReveal";
+
 const partners = [
   {
     name: "Intellian",
@@ -22,7 +25,7 @@ const Partners = () => {
     <section id="partners" className="py-20 bg-background">
       <div className="container mx-auto px-4">
         {/* Section Header */}
-        <div className="text-center max-w-3xl mx-auto mb-16">
+        <ScrollReveal className="text-center max-w-3xl mx-auto mb-16">
           <span className="inline-block font-heading font-semibold text-accent text-sm tracking-widest uppercase mb-4">
             Trusted Partners
           </span>
@@ -34,30 +37,32 @@ const Partners = () => {
             We partner with the world's leading satellite and communication technology providers
             to deliver the best solutions for our clients.
           </p>
-        </div>
+        </ScrollReveal>
 
         {/* Partners Grid */}
         <div className="grid grid-cols-2 md:grid-cols-4 gap-8 items-center justify-items-center">
           {partners.map((partner, index) => (
-            <div
-              key={index}
-              className="group relative w-full max-w-[200px] h-24 flex items-center justify-center p-6 bg-card rounded-xl shadow-soft hover:shadow-medium transition-all duration-300 hover:-translate-y-1"
-            >
-              <img
-                src={partner.logo}
-                alt={`${partner.name} logo`}
-                className="max-h-12 w-auto object-contain filter grayscale group-hover:grayscale-0 transition-all duration-300 opacity-70 group-hover:opacity-100"
-              />
-            </div>
+            <ScrollReveal key={index} delay={index * 0.1}>
+              <motion.div
+                whileHover={{ y: -4 }}
+                className="group relative w-full max-w-[200px] h-24 flex items-center justify-center p-6 bg-card rounded-xl shadow-soft hover:shadow-medium transition-all duration-300"
+              >
+                <img
+                  src={partner.logo}
+                  alt={`${partner.name} logo`}
+                  className="max-h-12 w-auto object-contain filter grayscale group-hover:grayscale-0 transition-all duration-300 opacity-70 group-hover:opacity-100"
+                />
+              </motion.div>
+            </ScrollReveal>
           ))}
         </div>
 
         {/* Trust Banner */}
-        <div className="mt-16 text-center">
+        <ScrollReveal delay={0.4} className="mt-16 text-center">
           <p className="text-muted-foreground">
             Trusted by leading oil & gas companies and maritime operators across Africa
           </p>
-        </div>
+        </ScrollReveal>
       </div>
     </section>
   );
