@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { Menu, X, Phone, Mail } from "lucide-react";
 import { Button } from "./ui/button";
+import greigLogo from "@/assets/greig-logo.png";
 
 const Header = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -13,6 +14,16 @@ const Header = () => {
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
+
+  const scrollToSection = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
+    e.preventDefault();
+    const targetId = href.replace("#", "");
+    const element = document.getElementById(targetId);
+    if (element) {
+      element.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
+    setIsMobileMenuOpen(false);
+  };
 
   const navLinks = [
     { name: "Home", href: "#home" },
@@ -54,16 +65,16 @@ const Header = () => {
         <div className="container mx-auto px-4">
           <div className="flex items-center justify-between h-20">
             {/* Logo */}
-            <a href="#home" className="flex items-center gap-3">
-              <div className="w-12 h-12 bg-ocean-gradient rounded-lg flex items-center justify-center">
-                <span className="text-primary-foreground font-heading font-bold text-xl">GT</span>
-              </div>
-              <div className="hidden sm:block">
-                <h1 className="font-heading font-bold text-lg text-primary leading-tight">
-                  Greig Technologies
-                </h1>
-                <p className="text-xs text-muted-foreground">Maritime Solutions</p>
-              </div>
+            <a 
+              href="#home" 
+              onClick={(e) => scrollToSection(e, "#home")}
+              className="flex items-center"
+            >
+              <img 
+                src={greigLogo} 
+                alt="Greig Technologies Limited" 
+                className="h-14 w-auto"
+              />
             </a>
 
             {/* Desktop Navigation */}
@@ -72,6 +83,7 @@ const Header = () => {
                 <a
                   key={link.name}
                   href={link.href}
+                  onClick={(e) => scrollToSection(e, link.href)}
                   className="font-heading font-medium text-sm text-foreground hover:text-accent transition-colors relative group"
                 >
                   {link.name}
@@ -107,7 +119,7 @@ const Header = () => {
                   key={link.name}
                   href={link.href}
                   className="font-heading font-medium text-foreground hover:text-accent transition-colors py-2"
-                  onClick={() => setIsMobileMenuOpen(false)}
+                  onClick={(e) => scrollToSection(e, link.href)}
                 >
                   {link.name}
                 </a>
