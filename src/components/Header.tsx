@@ -33,6 +33,10 @@ const Header = () => {
     { name: "Contact", href: "#contact" },
   ];
 
+  const externalLinks = [
+    { name: "Vendor Portal", href: "https://greigvendorportal.vercel.app/", external: true },
+  ];
+
   return (
     <>
       {/* Top Bar */}
