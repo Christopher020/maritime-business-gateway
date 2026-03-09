@@ -33,6 +33,10 @@ const Header = () => {
     { name: "Contact", href: "#contact" },
   ];
 
+  const externalLinks = [
+    { name: "Vendor Portal", href: "https://greigvendorportal.vercel.app/", external: true },
+  ];
+
   return (
     <>
       {/* Top Bar */}
@@ -92,11 +96,25 @@ const Header = () => {
               ))}
             </nav>
 
-            {/* CTA Button */}
-            <div className="hidden lg:block">
-              <Button variant="gold" size="lg">
-                Get A Quote
-              </Button>
+            {/* External Links */}
+            <div className="hidden lg:flex items-center gap-4">
+              {externalLinks.map((link) => (
+                <a
+                  key={link.name}
+                  href={link.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="font-heading font-medium text-sm text-foreground hover:text-accent transition-colors relative group"
+                >
+                  {link.name}
+                  <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-accent transition-all duration-300 group-hover:w-full" />
+                </a>
+              ))}
+              <a href="https://greigsupporthub.vercel.app/" target="_blank" rel="noopener noreferrer">
+                <Button variant="gold" size="lg">
+                  Customer Support
+                </Button>
+              </a>
             </div>
 
             {/* Mobile Menu Button */}
@@ -124,9 +142,22 @@ const Header = () => {
                   {link.name}
                 </a>
               ))}
-              <Button variant="gold" size="lg" className="mt-4">
-                Get A Quote
-              </Button>
+              {externalLinks.map((link) => (
+                <a
+                  key={link.name}
+                  href={link.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="font-heading font-medium text-foreground hover:text-accent transition-colors py-2"
+                >
+                  {link.name}
+                </a>
+              ))}
+              <a href="https://greigsupporthub.vercel.app/" target="_blank" rel="noopener noreferrer" className="mt-4">
+                <Button variant="gold" size="lg" className="w-full">
+                  Customer Support
+                </Button>
+              </a>
             </nav>
           </div>
         )}

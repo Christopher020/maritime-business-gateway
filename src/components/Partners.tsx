@@ -1,5 +1,10 @@
 import { motion } from "framer-motion";
+import { useEffect, useRef, useState } from "react";
 import ScrollReveal from "./ScrollReveal";
+import intellianLogo from "@/assets/cisco-meraki-logo.png";
+import inmarsatLogo from "@/assets/inmarsat-logo.png";
+import iridiumLogo from "@/assets/iridium-logo.png";
+import starlinkLogo from "@/assets/starlink-logo.png";
 
 const partners = [
   {
@@ -7,22 +12,42 @@ const partners = [
     logo: "https://greigtechnologies.com/static/media/intellian.79f1f09a180a63277b91.png",
   },
   {
-    name: "Comtech",
-    logo: "https://greigtechnologies.com/static/media/comtech.c034db2e55ed8ccd814d.png",
-  },
-  {
     name: "OneWeb",
     logo: "https://greigtechnologies.com/static/media/OneWeb_Logo.9c501a0063bb525710f7.png",
   },
   {
     name: "Starlink",
-    logo: "https://greigtechnologies.com/static/media/Starlink_Logo.svg.9d7726d700fde5838a60.png",
+    logo: starlinkLogo,
+  },
+  {
+    name: "Cisco Meraki",
+    logo: intellianLogo,
+  },
+  {
+    name: "Inmarsat",
+    logo: inmarsatLogo,
+  },
+  {
+    name: "Iridium",
+    logo: iridiumLogo,
   },
 ];
 
 const Partners = () => {
+  const [width, setWidth] = useState(0);
+  const carouselRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (carouselRef.current) {
+      setWidth(carouselRef.current.scrollWidth - carouselRef.current.offsetWidth);
+    }
+  }, []);
+
+  // Duplicate partners for seamless loop
+  const allPartners = [...partners, ...partners];
+
   return (
-    <section id="partners" className="py-20 bg-background">
+    <section id="partners" className="py-20 bg-background overflow-hidden">
       <div className="container mx-auto px-4">
         {/* Section Header */}
         <ScrollReveal className="text-center max-w-3xl mx-auto mb-16">
@@ -39,13 +64,27 @@ const Partners = () => {
           </p>
         </ScrollReveal>
 
-        {/* Partners Grid */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-8 items-center justify-items-center">
-          {partners.map((partner, index) => (
-            <ScrollReveal key={index} delay={index * 0.1}>
+        {/* Auto-scrolling Carousel */}
+        <div className="relative" ref={carouselRef}>
+          <motion.div
+            className="flex gap-8"
+            animate={{
+              x: [0, -(partners.length * 232)],
+            }}
+            transition={{
+              x: {
+                repeat: Infinity,
+                repeatType: "loop",
+                duration: 20,
+                ease: "linear",
+              },
+            }}
+          >
+            {allPartners.map((partner, index) => (
               <motion.div
+                key={`${partner.name}-${index}`}
                 whileHover={{ y: -4 }}
-                className="group relative w-full max-w-[200px] h-24 flex items-center justify-center p-6 bg-card rounded-xl shadow-soft hover:shadow-medium transition-all duration-300"
+                className="group relative min-w-[200px] h-24 flex items-center justify-center p-6 bg-card rounded-xl shadow-soft hover:shadow-medium transition-all duration-300 shrink-0"
               >
                 <img
                   src={partner.logo}
@@ -53,8 +92,8 @@ const Partners = () => {
                   className="max-h-12 w-auto object-contain filter grayscale group-hover:grayscale-0 transition-all duration-300 opacity-70 group-hover:opacity-100"
                 />
               </motion.div>
-            </ScrollReveal>
-          ))}
+            ))}
+          </motion.div>
         </div>
 
         {/* Trust Banner */}
