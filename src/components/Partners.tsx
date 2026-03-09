@@ -89,7 +89,8 @@ const Partners = () => {
                 <img
                   src={partner.logo}
                   alt={`${partner.name} logo`}
-                  className="max-h-20 w-auto object-contain filter grayscale group-hover:grayscale-0 transition-all duration-300 opacity-70 group-hover:opacity-100"
+                  style={{ height: '60px', width: 'auto' }}
+                  className="object-contain filter grayscale group-hover:grayscale-0 transition-all duration-300 opacity-70 group-hover:opacity-100"
                 />
               </motion.div>
             ))}
