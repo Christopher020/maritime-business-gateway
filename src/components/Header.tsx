@@ -142,9 +142,22 @@ const Header = () => {
                   {link.name}
                 </a>
               ))}
-              <Button variant="gold" size="lg" className="mt-4">
-                Get A Quote
-              </Button>
+              {externalLinks.map((link) => (
+                <a
+                  key={link.name}
+                  href={link.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="font-heading font-medium text-foreground hover:text-accent transition-colors py-2"
+                >
+                  {link.name}
+                </a>
+              ))}
+              <a href="https://greigsupporthub.vercel.app/" target="_blank" rel="noopener noreferrer" className="mt-4">
+                <Button variant="gold" size="lg" className="w-full">
+                  Customer Support
+                </Button>
+              </a>
             </nav>
           </div>
         )}
