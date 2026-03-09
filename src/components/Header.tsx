@@ -96,11 +96,25 @@ const Header = () => {
               ))}
             </nav>
 
-            {/* CTA Button */}
-            <div className="hidden lg:block">
-              <Button variant="gold" size="lg">
-                Get A Quote
-              </Button>
+            {/* External Links */}
+            <div className="hidden lg:flex items-center gap-4">
+              {externalLinks.map((link) => (
+                <a
+                  key={link.name}
+                  href={link.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="font-heading font-medium text-sm text-foreground hover:text-accent transition-colors relative group"
+                >
+                  {link.name}
+                  <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-accent transition-all duration-300 group-hover:w-full" />
+                </a>
+              ))}
+              <a href="https://greigsupporthub.vercel.app/" target="_blank" rel="noopener noreferrer">
+                <Button variant="gold" size="lg">
+                  Customer Support
+                </Button>
+              </a>
             </div>
 
             {/* Mobile Menu Button */}
