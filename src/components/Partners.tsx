@@ -81,15 +81,15 @@ const Partners = () => {
             }}
           >
             {allPartners.map((partner, index) => (
-              <motion.div
+                <motion.div
                 key={`${partner.name}-${index}`}
                 whileHover={{ y: -4 }}
-                className="group relative min-w-[200px] h-24 flex items-center justify-center p-6 bg-card rounded-xl shadow-soft hover:shadow-medium transition-all duration-300 shrink-0"
+                className="group relative min-w-[240px] h-32 flex items-center justify-center p-6 bg-card rounded-xl shadow-soft hover:shadow-medium transition-all duration-300 shrink-0"
               >
                 <img
                   src={partner.logo}
                   alt={`${partner.name} logo`}
-                  className="max-h-12 w-auto object-contain filter grayscale group-hover:grayscale-0 transition-all duration-300 opacity-70 group-hover:opacity-100"
+                  className="max-h-20 w-auto object-contain filter grayscale group-hover:grayscale-0 transition-all duration-300 opacity-70 group-hover:opacity-100"
                 />
               </motion.div>
             ))}
