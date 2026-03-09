@@ -34,7 +34,7 @@ const Header = () => {
   ];
 
   const externalLinks = [
-    { name: "Vendor Portal", href: "https://greigvendorportal.vercel.app/", external: true },
+    { name: "Vendor Portal", href: "https://greig-vendor-hub.vercel.app/", external: true },
   ];
 
   return (
